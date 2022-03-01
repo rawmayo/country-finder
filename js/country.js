@@ -24,20 +24,11 @@ async function getSpecificCountry() {
 
     const res = await req.json();
 
-    if (country.toLowerCase() === "china") {
-      const i = res.length - 1;
-      const data = res[i];
-
+    res.forEach((data) => {
       createFlagContainerHTML(data.flags.svg, data);
       createDetailsContainerHTML(data);
       getBorderCountries(data.borders);
-    } else {
-      res.forEach((data) => {
-        createFlagContainerHTML(data.flags.svg, data);
-        createDetailsContainerHTML(data);
-        getBorderCountries(data.borders);
-      });
-    }
+    });
   } catch (e) {
     if (e instanceof TypeError) {
       console.error(e);
