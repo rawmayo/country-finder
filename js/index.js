@@ -22,8 +22,11 @@ async function getAllCountries() {
     viewCountryInfo();
     searchCountry();
     filterByRegion();
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    removeLoadingHTML();
+    createHTTPErrorHTML(null, "Something went wrong!", e.message);
+    showHTTPErrorHTML();
+    refreshPage();
   }
 }
 
@@ -57,18 +60,18 @@ function showLoadingHTML() {
   }
 }
 
-function createHTTPErrorHTML(request) {
+function createHTTPErrorHTML(request = null, status = null, msg = null) {
   const errorContainer = document.querySelector(".fetch-error");
 
   // Create error status code element
   const errorStatus = document.createElement("h2");
   errorStatus.className = "fetch-error__status";
-  errorStatus.innerText = request.status;
+  errorStatus.innerText = request ? request.status : status;
 
   // Create error message
   const errorMsg = document.createElement("p");
   errorMsg.className = "fetch-error__msg";
-  errorMsg.innerText = request.statusText;
+  errorMsg.innerText = request ? request.statusText : msg;
 
   // Create retry button
   const retryBtn = document.createElement("button");
