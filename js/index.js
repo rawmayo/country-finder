@@ -277,6 +277,7 @@ function mode() {
         modeToggler.innerHTML = '<i class="bx bx-moon bx-fw"></i> Dark Mode';
         sessionStorage.setItem("theme", "light");
       }
+      setTheme();
     });
   });
 }
