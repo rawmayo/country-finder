@@ -210,7 +210,7 @@ function searchCountry() {
         country
           .getAttribute("data-country")
           .toLowerCase()
-          .indexOf(find.value) !== -1
+          .indexOf(find.value.toLowerCase()) !== -1
       ) {
         country.classList.remove("d-none");
       } else {
