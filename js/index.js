@@ -221,11 +221,14 @@ function searchCountry() {
 }
 
 function filterByRegion() {
+  const dropdownBtn = document.getElementById("dropdown-btn");
   const countries = document.querySelectorAll(".index-main__country-card ");
   const regions = document.querySelectorAll(".index-main__dropdown-list-item");
 
   [...regions].forEach((region) => {
     region.addEventListener("click", () => {
+      dropdownBtn.innerText =
+        region.innerText !== "None" ? region.innerText : "Filter by Region";
       [...countries].forEach((country) => {
         if (region.innerText !== country.getAttribute("data-region")) {
           country.classList.add("d-none");
